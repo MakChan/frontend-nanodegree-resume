@@ -2,6 +2,7 @@ body,
 div,
 ul,
 li,
+nav,
 p,
 h1,
 h2,
@@ -14,14 +15,36 @@ h6 {
   font-family: "Roboto", sans-serif;
 }
 
+body {
+  padding-top: 50px;
+}
+
 .clear-fix {
   overflow: auto;
+}
+
+.navigation {
+  color: black !important;
+  font-size: 20px;
+}
+
+nav {
+  padding-right: 20px;
+  overflow: hidden;
+  background-color: #f5ae23 !important;
+}
+
+#navbar > ul > li > a:hover {
+    font-weight: 700;
+    background-color: #4a4a4a;
+    color: white !important;
 }
 
 .education-entry,
 .work-entry,
 .project-entry {
   padding: 0 5%;
+  margin-bottom: 20px;
 }
 
 h1 {
@@ -127,9 +150,14 @@ a {
   background-color: #4a4a4a;
 }
 
-/* TODO: Replace with image later */
+
 #header {
   background-color: #484848;
+}
+
+#role {
+  color: white;
+
 }
 
 .flex-box {
@@ -218,4 +246,14 @@ span {
   .biopic {
     display: block;
   }
+}
+
+#button {
+  background-color: #4a4a4a;
+  text-align: center;
+}
+
+button {
+  background-color: #f3f3f3;
+  text-align: center;
 }

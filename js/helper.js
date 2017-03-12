@@ -2,9 +2,6 @@
 
 This file contains all of the code running in the background that makes resumeBuilder.js possible. We call these helper functions because they support your code in this course.
 
-Don't worry, you'll learn what's going on in this file throughout the course. You won't need to make any changes to it until you start experimenting with inserting a Google Map in Problem Set 3.
-
-Cameron Pittman
 */
 
 
@@ -12,8 +9,8 @@ Cameron Pittman
 These are HTML strings. As part of the course, you'll be using JavaScript functions
 replace the %data% placeholder text you see in them.
 */
-var HTMLheaderName = '<h1 id="name">%data%</h1>';
-var HTMLheaderRole = '<span>%data%</span><hr>';
+var HTMLheaderName = '<h1 class="orange-text"id="name">%data%</h1>';
+var HTMLheaderRole = '<span id="role">%data%</span><hr>';
 
 var HTMLcontactGeneric = '<li class="flex-item"><span class="orange-text">%contact%</span><span class="white-text">%data%</span></li>';
 var HTMLmobile = '<li class="flex-item"><span class="orange-text">mobile</span><span class="white-text">%data%</span></li>';
@@ -86,7 +83,7 @@ function logClicks(x,y) {
 }
 
 $(document).click(function(loc) {
-  // your code goes here!
+  logClicks(loc.X, loc.Y)
 });
 
 
@@ -105,16 +102,17 @@ Start here! initializeMap() is called when page is loaded.
 function initializeMap() {
 
   var locations;
-
+	/*
   var mapOptions = {
-    disableDefaultUI: true
+    disableDefaultUI: true,
+    zoom: 5
   };
 
   /*
   For the map to be displayed, the googleMap var must be
   appended to #mapDiv in resumeBuilder.js.
   */
-  map = new google.maps.Map(document.querySelector('#map'), mapOptions);
+  map = new google.maps.Map(document.querySelector('#map'), {zoom: 5});
 
 
   /*
@@ -141,9 +139,9 @@ function initializeMap() {
     // the locations array. Note that forEach is used for array iteration
     // as described in the Udacity FEND Style Guide:
     // https://udacity.github.io/frontend-nanodegree-styleguide/javascript.html#for-in-loop
-    work.jobs.forEach(function(job){
-      locations.push(job.location);
-    });
+    //work.jobs.forEach(function(job){
+    //  locations.push(job.location);
+    //});
 
     return locations;
   }
@@ -171,13 +169,15 @@ function initializeMap() {
     // infoWindows are the little helper windows that open when you click
     // or hover over a pin on a map. They usually contain more information
     // about a location.
+
+
     var infoWindow = new google.maps.InfoWindow({
       content: name
     });
 
     // hmmmm, I wonder what this is about...
     google.maps.event.addListener(marker, 'click', function() {
-      // your code goes here!
+       infoWindow.open(map, marker);
     });
 
     // this is where the pin actually gets added to the map.
@@ -239,11 +239,11 @@ Uncomment the code below when you're ready to implement a Google Map!
 */
 
 // Calls the initializeMap() function when the page loads
-//window.addEventListener('load', initializeMap);
+window.addEventListener('load', initializeMap);
 
 // Vanilla JS way to listen for resizing of the window
 // and adjust map bounds
-//window.addEventListener('resize', function(e) {
+window.addEventListener('resize', function(e) {
   //Make sure the map bounds get updated on page resize
-//  map.fitBounds(mapBounds);
-//});
+ map.fitBounds(mapBounds);
+});
